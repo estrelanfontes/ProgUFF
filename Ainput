@@ -1,0 +1,10 @@
+#Ex 17
+cambio = float(input("Defina o valor da taxa de câmbio (ex 5.87): \n"))
+dolar = float(input("Qual o valor em Dólar? \n"))
+reais = cambio*dolar
+print(f"O valor em reais é de {reais}") 
+
+#Ex 18
+cambio = float(input("Insira a a taxa de câmbio (ex 0.17): \n>"))
+real = float(input("Insira o valor em real: \n"))
+print("O valor em dólar é de aproximadamente:\n", cambio*real)
