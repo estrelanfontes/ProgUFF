@@ -1,0 +1,5 @@
+#Checar se um numero é ímpar ou par, usando apenas variaveis, operadores e print
+N = int(input("insira um numero: "))
+resto = N%2
+A = "ím"*resto
+print(A+"par")
