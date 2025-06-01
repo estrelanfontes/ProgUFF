@@ -1,0 +1,19 @@
+#organizar os numeros em ordem descrescente usando um if
+A = 1
+B = 2
+C = 3
+D = 4
+E = 5
+ordem = []
+contador = 0
+Lista = [A, B, C, D, E]
+fim = len(Lista) #len() é o numero de elementos que a Lista carrega
+while contador<fim: #qnd o contador atingir o todos os elementos da lista
+  for i in Lista:
+    if i == max(Lista): #se i é igual ao maior item da Lista
+      ordem.append(i)
+      Lista.remove(i)
+      contador+=1
+
+#Para cada item na lista, verifique se é maior que os demais
+#Se for append na lista "ordem" e remova da "Lista", se não volte para o looping e encontre o maior n da lista
