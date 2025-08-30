@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+float converte (float c)
+{
+    float f;
+    f = 1.8*c + 32;
+    return f;
+}
+
+int main (void)
+{
+float t1;
+float t2;
+// como testar a função: t1 = converte(30.0);
+/* mostra mensagem para o usuário */
+printf("Digite a temperatura em Celsius: \n");
+/* captura valor entrado via teclado */
+scanf("%f",&t1);
+/* converte o valor, chamando a função auxiliar */
+t2 = converte(t1); /* exibe resultado */
+printf("Temperatura em Fahrenheit: %f\n", t2); // ou
+//printf(“Resultado=%f”, converte(t1));
+return 0;
+}
