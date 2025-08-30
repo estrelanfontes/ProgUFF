@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main() {
+    int seg, min, hr;
+    printf("Digite os segundos que serão convertidos em horas:minutos:segundos\n");
+    scanf("%d",&seg);
+    hr = seg/(60*60);
+    seg -= (hr*3600);
+    min = (seg/60);
+    seg -= (min*60);
+    printf("%d:%d:%d",hr,min,seg);
+    return 0;
+}
