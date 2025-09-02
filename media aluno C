@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+float mediax(float nota1, float nota2, float nota3){
+    float media = 0.0f;
+    
+    media = (nota1 + nota2 + nota3) / 3;
+
+    return media;
+
+    
+}
+int main(){
+    float media = 0.0f;
+    float n1 = 0.0f;
+    float n2 = 0.0f;
+    float n3 = 0.0f;
+
+    printf("insira a primeira nota:\n");
+    scanf("%f", &n1);
+
+    printf("insira a segunda nota:\n");
+    scanf("%f", &n2);
+
+    printf("insira o terceiro valor:\n");
+    scanf("%f", &n3);
+
+
+    media = mediax(n1, n2, n3);
+    if (n1 < 0 || n2 < 0 || n3 < 0){
+        printf("nao foi inserido notas validas.");
+    }
+    else if (media >= 6){
+        printf("aluno aprovado");
+    }
+    else if (4 <= media && media <= 5.9){
+        printf("aluno precisa fazer vs.");
+    }
+    else if(media < 4){
+        printf("aluno reprovado");
+    }
+return 0;
+}
