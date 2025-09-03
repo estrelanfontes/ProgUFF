@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <math.h>
+
+float delta(float a, float b, float c){
+
+float delta;
+delta = (b*b-4*a*c); 
+}
+
+int main(){
+
+double resultado, resultado2;
+float a,b,c;
+printf("digite um valor para a,b,c para o polinomio:\n");
+scanf("%f,%f,%f\n",&a,&b,&c);
+
+if (delta(a,b,c)<0){
+printf("Error");
+}
+else {
+resultado = (-b+sqrt(delta(a,b,c))/(2*a));
+resultado2 = (-b-sqrt(delta(a,b,c))/(2*a));
+printf("%f\n",resultado);
+printf("%f",resultado2);
+}
+}
