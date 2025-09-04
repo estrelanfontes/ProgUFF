@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+
+float number; 
+int resultado1, resultado2;
+printf("digite um float que sera arredondado de duas maneira:\n");
+scanf("%f\n", &number);    
+
+resultado1 = (int)number;
+resultado2 = ceil(number);
+printf("%d\n%d",resultado1,resultado2);
+}
