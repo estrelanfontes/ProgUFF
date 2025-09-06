@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int totalnotas(int valor){
+int notas, cedula;
+notas = 0;
+cedula = 100;
+while (valor>0){
+if (valor>=cedula){
+    valor-=cedula;
+    notas++;}
+else{
+    cedula /= 2;
+    if (cedula == 25){
+        cedula = 20;
+    }}
+}
+return notas;
+}
+
+int main(){
+int number,resultado;
+printf("digite um valor:\n");
+scanf("%d\n",&number);
+resultado = totalnotas(number);
+printf("%d",resultado);   
+}
