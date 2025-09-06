@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int soma(int numero){
+int resposta;
+resposta = numero*numero;
+return resposta;
+}
+
+int main(){
+int nimpares;
+
+printf("quantos numeros ímpares farão parte da soma?\n");
+scanf("%d",&nimpares);
+printf("%d",soma(nimpares));
+return 0;    
+}
