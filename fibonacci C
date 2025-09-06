@@ -1,0 +1,24 @@
+  #include <stdio.h>
+
+void fibonacci(int termo){ /*printa a sequencia ate determinado termo*/
+int a1,a2,resultado;
+a1 = 1;
+a2 = a1;
+printf("%d %d ",a1,a2);
+for (int i=3; i<=termo;i++){
+    resultado = a1+a2;
+    printf("%d ",resultado);
+    a1 = a2;
+    a2 = resultado;
+    
+    
+}
+}
+
+int main(){
+int numero;
+printf("digite a quantidade de termos que a sequencia terá\n");
+scanf("%d",&numero);
+fibonacci(numero);
+return 0;    
+}
