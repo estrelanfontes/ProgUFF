@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int gerarnumero(int x, int z){
+int maior, contador, var;
+maior = x;
+for (contador = 1; maior<=z; contador++){
+    var = x+contador;
+    maior += var;
+}
+printf("\nquantidade de inteiros somados: %d\nvalor final da soma: %d",contador, maior);
+/*falta noções de ponteiros pra retornar dois valores da função e printar na main()*/
+}
+
+
+int main(){
+int n1, n2;
+printf("digite um valor inteiro para x: ");
+scanf("%d", &n1);
+printf("\ndigite um inteiro maior para z: ");
+scanf("%d",&n2);
+
+while (n2<n1){
+printf("\ndigite outro valor para z: ");
+scanf("%d",&n2);
+}
+
+gerarnumero(n1,n2);
+return 0;
+}
