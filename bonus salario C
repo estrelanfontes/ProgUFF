@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main(){
+float horas, valor, salario;
+
+printf("Quanta horas de trabalho: ");
+scanf("%f",&horas);
+printf("\nQual o valor por hora de trabalho: ");
+scanf("%f",&valor);
+
+if (horas<=40){
+salario = horas*valor;    
+}
+else if (horas>60){
+salario = horas*valor*2;}
+else {salario=horas*valor*1.5;
+}
+
+printf("\no salario do trabalhador sera: %f",salario);
+return 0;
+}
