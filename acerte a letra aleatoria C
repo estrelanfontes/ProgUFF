@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+char caractere(){
+char alfabeto[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+int aleatorio = rand()%26;
+return alfabeto[aleatorio];
+}
+
+int main(){
+srand(time(NULL));
+char letra, var;
+var = caractere();
+printf("Tente acertar a letra maiúscula que o computador escolheu\n");
+scanf("%c",&letra);
+if (letra == var){
+    printf("acertou");
+}
+else
+    printf("errou\n");
+    printf("%c",var);
+
+return 0;
+}
