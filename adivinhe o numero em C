@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(){
+srand(time(NULL));
+int cpu = rand()%101;
+int numero,i;
+printf("Adivinhe o numero entre 0 e 100: ");
+scanf("%d",&numero);
+
+for (i=0; numero!=cpu; i++){
+if (numero>cpu){
+    printf("\nTente um numero menor: ");
+}
+else {
+    printf("\nTente um numero maior: ");
+}
+scanf("%d",&numero);
+}
+printf("\nParabens você acertou, o numero era %d", cpu);
+    
+return 0;
+}
