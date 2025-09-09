@@ -1,0 +1,19 @@
+#include <stdio.h>
+unsigned int inverte(unsigned int number);
+int main(){
+unsigned int numero, var;
+printf("digite o numero inteiro que sera invertido: ");
+scanf("%u",&numero);
+
+var = inverte(numero);
+printf("\n%u", var);
+}
+
+unsigned int inverte(unsigned int number){
+unsigned int inv = 0;
+while (number>0){
+inv = inv * 10 + (number%10);
+number /= 10;
+}
+return inv;
+}
