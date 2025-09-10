@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+int n1,n2, result;
+printf("digite dois numero para gerar uma potencia: ");
+scanf("%d %d",&n1,&n2);
+result = pow(n1,n2);
+printf("\nresultado: %d", result);
+
+return 0;
+}
