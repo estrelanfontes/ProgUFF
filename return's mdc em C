@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int mdc(int x, int y);
+
+int main(){
+int a,b,c;
+a = 200;
+b = 100;
+c = mdc(a,b);
+printf("%d",c);    
+return 0;
+}
+
+int mdc(int x, int y){
+int menor,maior,i;
+menor = x < y ? x : y;
+maior = x > y ? x : y;
+
+if (maior % menor == 0){
+    return menor;
+}
+    
+for (i=(menor/2);i>1;i--){
+if ((menor%i == 0) && (maior%i == 0)){
+return i;}   
+}
+return 1;}
+    
