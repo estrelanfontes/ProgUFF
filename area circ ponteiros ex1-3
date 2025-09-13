@@ -1,0 +1,20 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#define pi 3.1415
+void calc_circulo(float r, float *circunferencia, float *area);
+
+int main() {
+float r,*circunferencia,*area ;
+r = 10;
+calc_circulo(float r,float *circunferencia,float *area);
+printf("%f\n%f",*circunferencia,*area);
+ return 0;
+}
+
+void calc_circulo(float r, float *circunferencia, float *area){
+float a,c;
+c = 2*pi*r;
+a = (pi*r)*(pi*r);
+circunferencia = &c;
+area = &a;
+}
