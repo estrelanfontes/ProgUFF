@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+int a,b,c,d;
+int i=3,j=5;
+int *p, *q;
+p = &i;
+q = &j;
+
+a = (p == &i); //return 1 (true)
+b = (*p - *q); //-2
+c = (**&p); //valor de i
+d = (3* - *p/(*q)+7); //-1+7 == 6 obs:a divisao de dois inteiros resulta em um inteiro 
+
+
+printf("%d\n%d\n%d\n%d",a,b,c,d);
+}
