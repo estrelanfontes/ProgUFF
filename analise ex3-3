@@ -1,0 +1,11 @@
+#include <stdio.h>
+//i ocupa o endereço 4094 na memoria
+int main() {
+int i=5, *p;
+p = &i;
+printf("%x %d %d \n", p, *p+2, 3**p); 
+//%x devolve hexadecimais
+//saida do programa
+// 4090 em hexadecimal 7 15
+
+}
