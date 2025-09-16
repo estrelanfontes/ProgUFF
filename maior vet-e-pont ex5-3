@@ -1,0 +1,19 @@
+#include <stdio.h>
+#define MAX 10
+float maxvetor(int n, float *vet);
+
+int main () {
+int n = 5;
+float vet[]={1,2,8,4,5};
+float resultado = maxvetor(n,vet);
+printf("%f",resultado);
+}
+
+float maxvetor(int n, float *vet){
+int i;
+float maior = *vet;
+for (i=0;i<n;i++){
+if (vet[i]>maior) maior = vet[i];
+}
+return maior;
+}
