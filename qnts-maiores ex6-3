@@ -1,0 +1,19 @@
+#include <stdio.h>
+int maiores(int n, int * vet, int x);
+
+int main(){
+int x = 2;
+int vet[] = {3,6,5,1,0};
+int n,resultado;
+n = sizeof(vet)/sizeof(vet[0]);
+resultado = maiores(n,vet,x);
+printf("%d",resultado);
+}
+
+int maiores(int n, int * vet, int x){
+int maiores = 0,i;
+    for (i=0;i<n;i++){
+        if (vet[i]>x) maiores+=1;
+    }
+return maiores;
+}
