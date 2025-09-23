@@ -1,0 +1,19 @@
+#include <stdio.h>
+void main(){
+float vet[5] = {1.1,2.2,3.3,4.4,5.5};
+float *f;
+int i;
+f = vet;
+printf("contador/valor/valor/endereco/endereco");
+for(i = 0 ; i <= 4 ; i++){            //no primeiro laço de repetição:
+printf("\ni = %d",i);                    //i = 0
+printf(" vet[%d] = %.1f",i, vet[i]);     //vet[0] = 1
+printf(" *(f + %d) = %.1f",i, *(f+i));   //(1+0) = 2.2
+printf(" &vet[%d] = %lf",i, &vet[i]);    //(endereço vet = 1.1) = (endereço vet[0])
+printf(" (f + %d) = %lf",i, f+i);        //1.1 = vet
+}
+}
+
+
+
+
