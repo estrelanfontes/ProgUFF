@@ -1,0 +1,48 @@
+//Escreva um programa que realize a leitura da idade, da altura e do sexo de n pessoas. Ao final,
+//mostre o número de mulheres com idade entre 20 e 35 anos e o número de homens com altura
+//maior que 1,80m. Calcule e mostre também a variância da altura.
+
+#include <stdio.h>
+#define MAX 5
+
+void function(int i, float a, char s, int *mulheres2035, int *homens180);
+double variancia(int n,float media,float *vet){
+double soma = 0;
+int i;
+for (i=0;i<n;i++){
+soma += (vet[i] - media)*(vet[i] - media);
+}
+
+return soma/n;    
+}
+
+
+int main(){
+int idade,i, n = 3; //falta verificar que MAX>=n
+float altura, armazena[MAX], soma = 0, media;
+char sexo;
+int mulheres2035 = 0, homens180 = 0;
+double var;
+for (i=0;i<n;i++){
+printf("digite a idade\n");
+scanf("%d",&idade);
+printf("digite a altura\n");
+scanf("%f",&altura);
+armazena[i] = altura;
+soma += altura;
+printf("digite o sexo H ou M\n");
+scanf(" %c",&sexo);
+function(idade,altura,sexo,&mulheres2035,&homens180);
+    }
+media = soma/n;
+var = variancia(n,media,armazena);
+printf("mulheres entre 20 e 35 anos: %d\n",mulheres2035);
+printf("homens com altura maior que 1.80m: %d\n",homens180);
+printf("variancia da altura: %f\n",var);
+}
+
+void function(int i, float a, char s, int *mulheres2035, int *homens180){
+
+if (s == 'M' && (i>=20 && i<=35)) *mulheres2035 += 1;
+if (s == 'H' && (a>1.80)) *homens180 += 1;
+}
