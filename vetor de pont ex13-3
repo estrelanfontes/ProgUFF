@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+int a,b,c,d;
+float e,f,g,h;
+int x;
+char vet[10] = {'a','b','c','d','e','f','g','h','x'};
+int *p;
+p = &a;
+*p = 9;
+printf("conteudo do endereço de a: %d\n",*p);
+int i;
+void *v[9] = {&a,&b,&c,&d,&e,&f,&g,&h,&x}; //vetor de ponteiros
+for(i=0;i<9;i++){
+if (p == v[i]) return printf("endereços coincidem quando a variavel é: %c\n",vet[i]);
+
+}
+return printf("endereços distintos sempre");
+
+}
