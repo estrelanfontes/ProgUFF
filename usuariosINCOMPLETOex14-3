@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX 4
+
+int main(){
+int idade, soma = 0;
+char fback[MAX+1];
+fback[MAX+1] = '\0';
+int pruim = 0, rpessimo = 0;
+float media,porcentagem;
+int maior1 = 0;
+int maior2 = 0;
+int maior3 = 0;
+int dif,i;
+
+for (i=0;i<MAX;i++){
+
+printf("\ndigite sua idade: ");
+scanf("%d",&idade);
+printf("\nqual seu feedback sobre o filme: ");
+scanf("%s",fback);
+
+if (strcmp(fback,"ruim") == 0){
+    pruim++;
+    soma += idade;
+    if (idade>maior2) maior2 = idade;
+}
+
+if (strcmp(fback,"pessimo") == 0){ 
+    rpessimo++;
+    if (idade>maior1) maior1 = idade;
+}
+if (strcmp(fback,"otimo") == 0){
+   if (idade>maior3) maior3 = idade;
+    }
+}
+media = soma/pruim;
+porcentagem = (rpessimo*100)/MAX;
+(maior3>maior2)? (dif = (maior3-maior2)): (dif = (maior2-maior3));
+
+printf("\nmedia de idade das pessoas com feedback ruim: %f\n",media);
+printf("porcentagem de feedbacks pessimos: %f\n",porcentagem);
+printf("maior idade com feedback pessimo: %d\n",maior1);//error
+printf("diferenca de idade entre pessoas com feedback otimo e ruim: %d\n",dif);
+
+
+printf("%d %d %d",maior1,maior2,maior3);//retorna valores inesperados
+}
