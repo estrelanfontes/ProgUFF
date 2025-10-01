@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void respotimo(char *palavra, int *num); //conferir se str == otimo, se adicione 1 ao ponteiro
+
+float difpercentual(int *numbom,int *numruim, int totalp); //calcular a diferença de percentual entre as respostas bom e ruim, retornar este valor
+
+float media(int sidade, int *numruim); //media de idade das pessoa que responderam ruim !cuidado com a divisao de inteiros
+float porcentpessimo(int *numpessimo, int totalp); //porcentagem das pessoas que responderam 'pessimo'
+
+void calculomaiores(int*maiorru, int*maioro, int*maiorp, int idade){
+
+if (idade>*maiorru) *maiorru = idade; //ou maiorru = &idade ??
+if (idade>*maioro) *maioro = idade;
+if (idade>*maiorp) *maiorp = idade;    
+}
+
+void diferencaidades(int* maioro, int* maiorru, int* difi){
+    (*maioro>*maiorru)? (*difi = *maioro-*maiorru) : (*difi = *maiorru-*maioro);
+
+}
+
+
+
+int main(){
+int idade, totalp = 0;
+int *numotimo = 0,*numbom = 0,*numregular = 0, *numruim = 0, *numpessimo = 0;
+int somaidruim = 0;//somatorio da idade das pessoas que responderam 'ruim'
+int *maiorp, *maioro, *maiorru;
+char c = 'c';
+char fback[11];
+float dif,media,porcent;
+fback[11]='\0';
+int *tam = (int*)malloc(sizeof(int));
+int *difi;
+
+while (c != 'p'){
+totalp ++;
+printf("\ndigite sua idade: ");
+scanf("%d",&idade);
+printf("feedback: ");
+scanf("%s",fback);
+
+if (*numruim == 1) maiorru = idade;
+if (*numrotimo == 1) maioro = idade;
+if (*numpessimo == 1) maiorp = idade;
+
+printf("\naperte qualquer tecla para continuar ou p para encerrar: ");
+c = getch();
+
+}
+*tam = totalp;//especificando o total de pessoas presentes, vetor q armazena memoria = somatorio de pessoas
+
+//chamar as funçoes
+
+printf("\nqualtidade de respostas 'otimo': %d",*numotimo);
+printf("\ndiferença de percentual entre respostas 'pessimo' e 'regular': %f",dif);
+printf("\nmedia de idade das pessoas que responderam 'ruim': %f ",media);
+printf("\nporcentagem de respostas 'pessimo': %f",porcent);
+printf("\nmaior idade que respondeu 'pessimo': %d",*maiorp);
+printf("\ndiferença de idade entre maior idade que respondeu 'otimo' e 'ruim: %d",*difi);
+    
+    
+return 0;
+}
