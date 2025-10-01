@@ -1,0 +1,64 @@
+// o vetor x sai com lixo de memoria pq ele esta com o tamanho 15 pre definido,
+//acho que da pra resolver usando max ao inves de malloc
+//ou ainda continuar usando malloc e definir n dentro da função construindox
+#include <stdio.h>
+#include <stdlib.h>
+void newvet(int *v, int *p){
+    int tam = *p;
+    int i,j,k;
+    for (i=0;i<tam;i++){
+        for (j=i+1;j<tam;j++){
+            if ((i != j) && (v[j]==v[i])){
+                for(k=j;k<tam-1;k++){
+                    v[k]=v[k+1];
+                } 
+            tam--;
+            j--;
+            }
+        }
+    }
+    *p=tam;
+}
+
+
+void construindox(int*v1, int*v2, int*v, int*size, int*t){
+    //definir os elementos do vetor x
+    int i;
+    for (i=0;i<*size;i++){
+        v[i] = v2[i];
+    }
+    for (i=0;i<*t;i++){
+        v[*size+i] = v1[i];
+        
+    }
+    }
+    
+
+int main() {
+    int *size = (int*)malloc(sizeof(int));//n precisa de malloc só usei pra testar
+    int r[]={1,2,3,4,5};
+    int s[] = {6,7,8,8,9,10,11,12,12,13};
+    int n = 15;
+    int i;
+    int *t;
+    *size = 10;
+    int a = 5;
+    t = &a;//fiz essa maluquice pra o tamanho do vetor R entrar na função newvet()
+    
+    
+    int*x = (int*)malloc(n*sizeof(int));
+    if (x==NULL) {printf("erro de alocação vetor X");exit(1);}
+    if (size==NULL) {printf("erro de alocação vetpr S");exit(1);}
+    newvet(s,size);
+    newvet(r,t);
+    construindox(r,s,x,size,t);
+
+    for (i=0;i<n;i++){
+        printf("%d ",x[i]);
+        
+    }
+    free(size);
+    free(x);
+
+    return 0;
+}
