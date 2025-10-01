@@ -1,0 +1,26 @@
+
+#include <stdio.h>
+
+void inverteparametros(int *vet, int *v,int n){
+    int i = 0;
+    while (i<n){
+        v[n-1-i] = vet[i];//copia do x[0] ate x[9]
+        i++;
+        
+    }
+    
+    
+}
+
+int main() {
+int tam = 10;
+int x[] = {1,2,3,4,5,6,7,8,9,0};
+int y[tam];
+int i;
+inverteparametros(x,y,tam);
+for (i=0;i<tam;i++){ //printando os elementos do vetor
+    printf("%d ",y[i]);
+    
+}
+
+    return 0;
