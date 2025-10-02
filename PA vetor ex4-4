@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int testa_PA(int n, int* v){
+int i;
+int sub = 0;
+
+sub = v[1]-v[0];
+for (i=1;i<n-1;i++){
+    if (sub != v[i+1]-v[i]) return sub; 
+}
+
+return sub;
+
+}
+
+int main() {
+    int vetor[] = {2,4,6,8};
+    int n = 4;
+    int resp;
+    if (n<=2) {printf("Tamanho invalido do vetor");return 1;}
+    
+    resp = testa_PA(n,vetor);
+    if (resp>0) printf("o valor da PA é %d",resp);
+    else printf("o vetor não é uma PA");
+    return 0;
+}
