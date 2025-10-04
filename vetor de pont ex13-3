@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h> //biblioteca para importar malloc() acabei nao usando
+
 
 int main() {
 int a,b,c,d;
 float e,f,g,h;
 int x;
-char vet[10] = {'a','b','c','d','e','f','g','h','x'}; //atençao as aspas simples
+char vet[10] = {'a','b','c','d','e','f','g','h','x'}; // aspas simples
 int *p;
 p = &a;
 *p = 9;
