@@ -1,0 +1,24 @@
+
+#include <stdio.h>
+
+int main() {
+    int i,j, tam = 9;
+    int n;
+    int vet[9];
+    for (i=0;i<9;i++){
+        printf("insira um numero: ");
+        scanf("%d",&n);
+        vet[i] = n;
+        
+    }
+    
+    //int vet[]={1,2,3,4,5,5,3,3};
+    
+    for (i=0;i<tam;i++){
+        for (j=i+1;j<tam-1;j++){//verifica se os numeros posteriores sao igual ao i em questao e faz isso por um range tam-1
+        if(vet[j]==vet[i]) printf("%d ",vet[j]);
+            
+        }
+    }
+    return 0;
+}
