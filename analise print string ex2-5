@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<string.h>
+main(void)
+{
+char texto[]= "foi muito facil";
+int i;
+for (i = 0; texto[i]!='\0'; i++)
+{
+if (texto[i] == ' ') break;
+}
+i++;
+for ( ; texto[i]!='\0'; i++)
+{
+printf("%c", texto[i]);
+}
+}
+
+//o codigo acima lê uma string e printa cada caratere após a ocorrencia de um espaço. 
+//No caso da string n possuir espaço ela simplesmente é printada por completo.
+//Inicialmente o código retorna um erro pois ao declarar a main faltou especcificar o tipo de dado de saída 'char'
