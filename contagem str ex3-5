@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+void vezescarac(char *palavra, char item, int *contagem){
+    int i;
+    
+    for (i=0;palavra[i]!='\0';i++){
+        if (palavra[i] == item) (*contagem)++;
+    }
+}
+
+int main(){
+    char palavra[] = "qualquer coisaaa";
+    char item = 'a';
+    int contagem = 0;
+    
+    vezescarac(palavra,item,&contagem);
+    printf("%d",contagem);
+    
+    
+    return 0;
+}
