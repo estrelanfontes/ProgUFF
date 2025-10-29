@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+void vogais(int *resposta, char palavra[]){
+    int i;
+    for (i=0;palavra[i]!='\0';i++){
+        switch (palavra[i]){
+            case 'a': case 'e': case 'i': case 'o': case 'u':
+            (*resposta)++;
+            break;
+        }
+    }
+}
+
+int main() {
+    int resposta = 0;
+    char palavra[] = "estrela";
+    vogais(&resposta,palavra);
+    printf("%d",resposta);
+    return 0;
+}
