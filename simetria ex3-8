@@ -1,0 +1,38 @@
+//verificar a matriz simetrica
+#include <stdio.h>
+
+int igualdade(int linha,int coluna){
+    if (linha==coluna) return 1;
+}
+
+int simetria(int*matriz,int numero){
+    int i,j,resposta;
+    resposta = 1;
+    for (i=0;i<numero;i++){
+        for(j=0;j<numero;j++){
+            if (*(matriz + i * numero + j) != *(matriz + j * numero + i)){    //acessando o valor na matriz
+             resposta=0;break;   
+            }
+    }
+    if (resposta==0) break;
+}
+return resposta;
+}
+int main(){
+    int var1,var2;
+    int matriz[4][4] = {
+        {1,2,3,4},
+        {2,7,5,6},
+        {3,5,11,8},
+        {4,6,8,13}
+    };
+    var1 = igualdade(4,4);
+    var2 = simetria(*matriz,4);
+    if (var1==var2 && var1==1){
+        printf("A matriz é simétrica");
+    }
+    else{
+        printf("A matriz é assimétrica");
+    }
+    return 0;
+}
