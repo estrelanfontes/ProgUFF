@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+char *compactar(char *s){
+    char* novastring = (char*)malloc(12 * sizeof(char));//alocando a novastring na memoria
+    if (novastring == NULL){
+        printf("erro na alocação");
+        exit(1);
+    }
+    
+    int i=0,j=0;
+    while(s[i]!='\0'){//copiando a string antiga para a nova compactada
+        if (s[i]!=' '){
+            novastring[j]=s[i];
+            j++;//posição na novastring
+        }
+        i++;//posição na string antiga que possui espaços ' ' 
+    }
+    novastring[j] = '\0'; //finalizando a novastring para poder printar e liberar memoria
+    return novastring;
+    
+}
+int main(){
+  char string[] = "estrela la ";
+  char *resultado = compactar(string);//passagem de string em funçao e atribuiçao de ponteiro
+  printf("forma compactada: %s", resultado); //%s pra printar string como ponteiro
+  free(resultado);
+    return 0;
+}
