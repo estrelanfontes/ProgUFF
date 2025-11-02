@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+void f1 ( int v) {
+v = v + 1;
+printf (" f1 = %d\n " , v );
+}
+
+void f2 ( int *v) {
+*v = *v + 1;
+printf (" f2 = %d\n " , *v );
+}
+
+int f3 ( int v) {
+v = v + 1;
+printf (" f3 = %d\n " , v );
+return v;
+}
+
+int main (void) {
+int v = 1;
+f1 ( v );
+f2 (&v );//o valor de v retorna ao original assim que a funçao f1 termina, porque o valor da funçao nao foi guardado na variavel v em main
+v = f3 ( v );//o valor de v foi alterado pela funçao f2 porque a variavel foi passada por referencia, ou seja, alterada pelo endereço
+printf (" main = %d \n" , v );//o valor de v foi salvo depois da execuçao de f3, logo v possui o mesmo valor definido em f3
+return 0;
+}
