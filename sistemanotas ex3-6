@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int *aprovados(int n, int *mat, float *nota, int *tam){
+int i,j=0;
+int *bons_alunos=(int*)malloc(n*sizeof(int));
+if (bons_alunos == NULL){
+    printf("erro na alocaçao");
+    exit(1);
+    
+}
+for (i=0;i<n;i++){
+    if (nota[i]>=5){
+        bons_alunos[j] = mat[i];
+        j++;
+    }
+    
+}
+
+*tam = j;
+return bons_alunos;
+
+}
+
+int main(){
+int total_alunos;
+printf("determine a quantidade de alunos: ");
+scanf("%d",&total_alunos);
+
+int matricula[total_alunos];
+float nota[total_alunos];
+int*tam_vetor = (int*)malloc(sizeof(int));
+int i;
+
+for (i=0;i<total_alunos;i++){
+    printf("\nmatricula: ");
+    scanf("%d",&matricula[i]);
+    printf("\nnota: ");
+    scanf("%f",&nota[i]);
+}
+
+int*primeiro_aluno = aprovados(total_alunos,matricula,nota,tam_vetor);
+printf("%d",primeiro_aluno[0]);
+free(primeiro_aluno);
+    return 0;
+}
