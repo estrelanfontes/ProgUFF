@@ -1,0 +1,35 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* cifra_cesar(char* msg){
+    int i,j=0;
+    int tam = strlen(msg);
+    char *criptografado = (char*)malloc((tam+1)*sizeof(char));
+    if (criptografado == NULL) exit(1);
+    char alfabeto[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};// ou  "abcdefghijklmnopqrstuvwxyz";
+    
+    //para cada caractere de msg armazenar o correspondente ao array criptografado
+    while (j<tam){
+    for (i=0;i<26;i++){
+        if (msg[j]==alfabeto[i]){
+            criptografado[j] = alfabeto[(i+3)%26];//retona ao inicio do array quando i=23='v' por conta do resto da divisao (23+3)/26 = 0, (24+3)/26 = 1, etc... 
+            j++;
+            break;
+        }
+    }
+}
+    criptografado[j] = '\0';
+    return criptografado;
+}
+
+
+int main() {
+    char msg[] = "uva";
+    char*resposta = cifra_cesar(msg);
+    printf("%s",resposta);
+    free(resposta);
+
+    return 0;
+}
