@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int *premiados(int n, int *inscr, float *t1, int p1,float *t2, int p2, int *tam){
+    int i,tamnovo = 0, cont=0;
+    float maiormedia = 0, media;
+    
+    for (i=0;i<n;i++){
+        media = (*(t1+i)*p1+*(t2+i)*p2)/(p1+p2);
+        if (media>maiormedia) maiormedia = media;
+    }
+    for (i=0;i<n;i++){
+        media = (*(t1+i)*p1+*(t2+i)*p2)/(p1+p2);
+        if (media==maiormedia) tamnovo++;
+    }
+    //alocando a inscriçao da(s) maior(es)media(s) no novo vetor
+    int*novovetor = (int*)malloc(tamnovo*sizeof(int));
+    if (novovetor==NULL){
+    printf("erro de alocaçao");
+    exit(1);
+    }
+    
+    for (i=0;i<n;i++){
+    media = (*(t1+i)*p1+*(t2+i)*p2)/(p1+p2);
+    if (media==maiormedia){
+        novovetor[cont] = inscr[i];
+        cont++;
+    }
+    }
+
+    *tam = tamnovo;  
+    return novovetor;
+}
+
+int main(){
+int n = 4,i;
+int inscr[] = {11,22,33,44};
+float t1[] = {2.5,6.1,8.9,2.5};
+int p1 = 2,p2 = 3;
+float t2[] = {10,7,2,10};
+
+int*tam = (int*)malloc(sizeof(int));
+if (tam == NULL){
+    printf("erro de alocaçao");
+    exit(1);
+}
+
+int *resultado = premiados(n, inscr, t1, p1,t2, p2, tam);
+for (i=0;i<*tam;i++){
+    printf("%d ",*(resultado+i));
+}
+free(resultado);
+free(tam);
+
+    return 0;
+} 
