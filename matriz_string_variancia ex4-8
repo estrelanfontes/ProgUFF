@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include <math.h>
+#define TAMNOME 80
+
+float media(char**matriz,int linhas);
+float variancia(char** matriz, float media,int linhas);
+
+int main(){
+int linhas = 0,i;
+float resultado_media,resultado_variancia;
+char **matriz = (char**)malloc(sizeof(char*));
+if (matriz==NULL) exit(1);
+char*nome=(char*)malloc(TAMNOME*sizeof(char));
+if (nome==NULL) exit(1);
+
+getchar();
+while(1){
+    printf("\ndigite um nome: ");
+    scanf("%79[^\n]", nome);  // Lê até 79 caracteres ou nova linha; [^\n]  // Lê QUALQUER caractere EXCETO nova linha (\n)
+    getchar();
+    if (strcmp(nome,"fim")==0) break;
+    matriz[linhas] = (char*)malloc(TAMNOME * sizeof(char));
+    if (matriz[linhas] == NULL) exit(1);
+    strcpy(matriz[linhas], nome);
+    linhas++; 
+    matriz = (char**)realloc(matriz,(linhas+1) * sizeof(char*));
+    
+}
+
+resultado_media = media(matriz,linhas);
+resultado_variancia = variancia(matriz,resultado_media,linhas);
+printf("Media do tamanho dos nomes: %.2f",resultado_media);
+printf("\nVariancia do tamanho dos nomes: %.2f",resultado_variancia);
+for (i=0;i<linhas;i++){
+    free(matriz[i]);
+}
+free(matriz);
+free(nome);
+    return 0;
+}
+
+float media(char**matriz,int linhas){
+    float soma = 0;
+    int i;
+    for (i=0;i<linhas;i++){
+        soma+=(float)strlen(matriz[i]);
+    }
+    return (soma/linhas);
+}
+
+float variancia(char **matriz, float media, int linhas){
+    float soma = 0;
+    int i;
+    
+    for (i=0;i<linhas;i++){
+        soma += pow((strlen(matriz[i])-media),2);
+    }
+    return (soma/linhas);
+    
+    
+}
