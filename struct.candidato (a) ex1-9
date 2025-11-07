@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct data{
+    int dia,mes,ano;
+}Data;
+
+typedef struct local{
+    char ender[81];
+    int sala;
+}Local;
+
+typedef struct notas{
+    float geral;
+    float especifica;
+}Notas;
+
+typedef struct candidato{
+    int inscr;
+    char nome[81];
+    
+    Data nasc;
+    Local *loc;
+    Notas nt;
+}*Candidato;
+
+void lerdata(Data *nasc){
+    printf("\nDATA DE NASCIMENTO\ndia: ");
+    scanf("%d",&nasc->dia);
+    printf("\nmes: ");
+    scanf("%d",&nasc->mes);
+    printf("\nano: ");
+    scanf("%d",&nasc->ano);
+}
+void lerlocal(Local *loc){
+    while (getchar()!='\n');
+    printf("\nLOCAL DE PROVA\nendereço: ");
+    scanf("%80[^\n]",loc->ender);
+    printf("\nnumero da sala: ");
+    scanf("%d",&loc->sala);
+}
+void lernotas(Notas *nt){
+    printf("\nREGISTRO DE NOTAS\nvalor da nota geral: ");
+    scanf("%f",&nt->geral);
+    printf("\nvalor da nota específica: ");
+    scanf("%f",&nt->especifica);
+}
+
+int main(){
+    int n=3,i;
+    
+    Candidato registros[n];
+
+    //registro de pessoas
+    for (i=0;i<n;i++){
+        registros[i] = (Candidato)malloc(sizeof(struct candidato));
+        if (registros[i]==NULL) exit(1);
+        printf("\nnumero de inscriçao: ");
+        scanf("%d",&registros[i]->inscr);
+        printf("\nnome: ");
+        while (getchar()!='\n');
+        scanf("%80[^\n]",registros[i]->nome);
+        lerdata(&registros[i]->nasc);
+        while (getchar()!='\n');
+        registros[i]->loc = (Local*)malloc(sizeof(Local));
+        if (registros[i]->loc==NULL)exit(1);
+        lerlocal(registros[i]->loc);
+        lernotas(&registros[i]->nt);
+        printf("DADOS ARMAZENADOS");
+        
+    }
+    
+        for (i=0;i<n;i++){
+            if (registros[i]->loc != NULL){
+                free(registros[i]->loc);
+            }
+            free(registros[i]);
+            
+        }
+
+    return 0;
+}
