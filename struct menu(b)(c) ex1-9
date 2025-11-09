@@ -1,0 +1,112 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct data{
+    int dia,mes,ano;
+}Data;
+
+typedef struct local{
+    char ender[81];
+    int sala;
+}Local;
+
+typedef struct notas{
+    float geral;
+    float especifica;
+}Notas;
+
+typedef struct candidato{
+    int inscr;
+    char nome[81];
+
+    Data nasc;
+    Local *loc;
+    Notas nt;
+}*Candidato;
+
+void lerdata(Data *nasc){
+    printf("\nDATA DE NASCIMENTO\ndia: ");
+    scanf("%d",&nasc->dia);
+    printf("\nmes: ");
+    scanf("%d",&nasc->mes);
+    printf("\nano: ");
+    scanf("%d",&nasc->ano);
+}
+void lerlocal(Local *loc){
+    while (getchar()!='\n');
+    printf("\nLOCAL DE PROVA\nendereço: ");
+    scanf("%80[^\n]",loc->ender);
+    printf("\nnumero da sala: ");
+    scanf("%d",&loc->sala);
+}
+void lernotas(Notas *nt){
+    printf("\nREGISTRO DE NOTAS\nvalor da nota geral: ");
+    scanf("%f",&nt->geral);
+    printf("\nvalor da nota específica: ");
+    scanf("%f",&nt->especifica);
+}
+
+void print_dados(Candidato *registro, int n){
+int i;
+for (i=0;i<n;i++){
+printf("Numero de incrição: %d, Nome: %80[^\n]", registro[i]->inscr, registro[i]->nome );
+printf("Data de Nascimento: %d/%d/%d",registro[i]->nasc.dia,registro[i]->nasc.mes,registro[i]->nasc.ano);
+printf("Endereço: %80[^\n], Numero da sala: %d", registro[i]->loc->ender, registro[i]->loc->sala);
+printf("Nota1: %f, Nota2: %f\n", registro[i]->nt.especifica,registro[i]->nt.geral);
+}
+}
+int main(){
+    int n=0,i;
+    int escolha;
+    Candidato *registros = NULL;//inicializar o vetor de ponteiros valendo NULL
+    int capacidade = 0;
+
+   do{
+    printf("Deseja inserir dados de outro candidato: tecla 1 \n Deseja visualizar os dados de todos cos candidatos: tecla 2 \nDeseja finalizar o programa: tecla 3 \n");
+    scanf("%d",&escolha);
+
+    if (escolha == 1){
+    //Etapa de realloc no vetor registro
+    if(n>=capacidade){
+        capacidade = (capacidade==0)? 1:capacidade*2;
+        Candidato *temp = (Candidato*)realloc(registros,capacidade*sizeof(Candidato));
+        if (temp==NULL) exit(1);
+        registros =temp;
+    }
+
+    //registro de pessoa
+        registros[n] = (Candidato)malloc(sizeof(struct candidato));
+        if (registros[n]==NULL) exit(1);
+        printf("\nnumero de inscriçao: ");
+        scanf("%d",&registros[n]->inscr);
+        printf("\nnome: ");
+        while (getchar()!='\n');
+        scanf("%80[^\n]",registros[n]->nome);
+        lerdata(&registros[n]->nasc);
+        while (getchar()!='\n');
+        registros[n]->loc = (Local*)malloc(sizeof(Local));
+        if (registros[n]->loc==NULL)exit(1);
+        lerlocal(registros[n]->loc);
+        lernotas(&registros[n]->nt);
+        printf("\nDADOS ARMAZENADOS");
+
+    }
+
+    if (escolha==2){
+        print_dados(registros,n);
+
+    }
+
+}
+
+   while (escolha != 3);
+        for (i=0;i<n;i++){
+            if (registros[i]->loc != NULL){
+                free(registros[i]->loc);
+            }
+            free(registros[i]);
+        }
+    free(registros);
+    return 0;
+}
