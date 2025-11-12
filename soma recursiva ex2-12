@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+//Faça uma função recursiva para imprimir a soma dos números ímpares de um vetor.
+
+//verifica a partir do ultimo elemento
+//variavel interna da soma retornada a cada recursao
+//caso haja impar, o valor é adicionado a variavel soma
+//caso seja par, é somado zero a variavel
+//quando o vetor chega ao fim n<0, return 0 para encerrar a funçao
+int somaimpar(int *v, int n){
+    if (n < 0) {
+    return 0;
+}
+    
+    int somainterna = somaimpar(v,n-1);
+    
+    if (v[n]%2!=0)return somainterna + v[n];
+    else return somainterna + 0;
+}
+
+int main(){
+    int v[] = {1,2,3,4,5,7};
+    int soma = somaimpar(v,5);
+    printf("%d",soma);
+    
+    return 0;
+}
