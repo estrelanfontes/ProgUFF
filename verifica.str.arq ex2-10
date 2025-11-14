@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct estudante{
+char matricula[21];
+float nota;
+    
+}Aluno;
+
+float busca (char* arquivo, char* matricula){
+    FILE*file = fopen(arquivo,"r");
+    if (file==NULL){
+        printf("ERROR");
+        exit(1);
+    }
+    char string[21];
+    float cr;
+    while (fscanf(file,"%20s %f",string,&cr)==2){
+    if (strcmp(string,matricula)==0){
+        fclose(file);
+        return cr;
+    }
+}
+    fclose(file);
+    return -1.0;
+}
+int main() {
+    int qntidade,i;
+    char procura[21];
+    float result;
+    printf("Quantos alunos quer registrar?");
+    scanf("%d",&qntidade);
+    Aluno *registros = (Aluno*)malloc(qntidade*sizeof(Aluno));  
+    for (i=0;qntidade>i;i++){
+        printf("\nMatricula do aluno: ");
+        scanf("%20s",registros[i].matricula);
+        printf("\nNota do aluno: ");
+        scanf("%f",&registros[i].nota);
+        while(getchar()!='\n');
+    }
+    
+    FILE*file = fopen("cadastro.txt","w");
+    if (file==NULL){
+        printf("error");
+        exit(1);
+    }
+    for (i=0;qntidade>i;i++){
+    fprintf(file,"%s ",registros[i].matricula);
+    fprintf(file,"%f\n",registros[i].nota);
+}
+    fclose(file);
+    printf("Digite a matricula que deseja procurar: ");
+    scanf("%20s",procura);
+    result = busca("cadastro.txt",procura);
+    printf("%f",result);
+    free(registros);
+    return 0;
+}
