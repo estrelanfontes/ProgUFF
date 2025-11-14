@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct funcionario {
+char nome[81]; /* nome do funcionário */
+float valor_hora; /* valor da hora de trabalho em Reais */
+int horas_mes; /* horas trabalhadas em um mês */
+};
+typedef struct funcionario Funcionario;
+
+void carrega (int n, Funcionario** vet, char* arquivo){
+    int i;
+    FILE*file = fopen(arquivo,"r");
+    if (file==NULL) exit(1);
+    //inserindo dados no vetor
+    for (i=0;i<n;i++){
+        vet[i] =(Funcionario*)malloc(sizeof(Funcionario));
+        if (vet[i]==NULL) exit(1);
+
+        // Variáveis temporárias para leitura
+        //uma alternativa a variaveis temporarias é:
+        //        // CORREÇÃO: Lê o nome usando fgets diretamente no campo da struct
+        //fgets(vet[i]->nome, 81, file);
+        //vet[i]->nome[strcspn(vet[i]->nome, "\n")] = '\0';
+        //fscanf(file, "%f", &vet[i]->valor_hora);
+        //fscanf(file, "%d", &vet[i]->horas_mes);
+        char nome[81];
+        float valor;
+        int horas;
+
+        fgets(nome,81,file);
+        nome[strcspn(nome,"\n")] = '\0';  // Remove o \n do final do nome se existir
+        strcpy(vet[i]->nome,nome); //nprecisaria copiar a string pra memoria no caso de usar fgets()
+        fscanf(file,"%1.f %d",&valor,&horas);
+
+        vet[i]->valor_hora= valor;
+        vet[i]->horas_mes = horas;
+        while (fgetc(file) != '\n' && !feof(file));
+
+    }
+    fclose(file);
+}
+
+int main(){
+    int qntpessoas,i;
+    char nomedoarq[81];
+    char nome[81];
+    int horas;
+    float valor;
+    printf("determine a quantidade de pessoas: ");
+    scanf("%d",&qntpessoas);
+    while (getchar() != '\n');//limpa o buffer do teclado
+    printf("determine o nome do arquivo: ");
+    scanf("%80s",nomedoarq);
+    Funcionario **registros = (Funcionario**)malloc(qntpessoas*sizeof(Funcionario*));
+
+    FILE *file = fopen(nomedoarq, "w");
+    if (file==NULL) exit(1);
+    //coleta dados do usuario
+    for (i=0;i<qntpessoas;i++){
+        printf("\nNome: ");
+        scanf("%80s",nome);
+        printf("\nValor da hora: ");
+        scanf("%f",&valor);
+        printf("\nTotal de horas: ");
+        scanf("%d",&horas);
+        while (getchar() != '\n');
+
+        fprintf(file,"%s\n",nome);
+        fprintf(file,"%f %d\n",valor,horas);
+    }
+
+    fclose(file);
+    carrega(qntpessoas,registros,nomedoarq);
+
+    //liberar memoria alocada para registros
+    for(i=0;i<qntpessoas;i++){
+        free(registros[i]);
+
+    }
+    free(registros);
+
+    return 0;
+}
