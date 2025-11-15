@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+float media(float*vet,int tam){
+float soma=0;
+int i;
+for (i=0;i<tam;i++){
+    soma+=vet[i];
+}
+return soma/(float)tam;
+}
+
+int main(){
+    char nome[21];
+    float result;
+    float oculto[] = {100.0,50.0,75.0};
+    float *vetor;
+    int qntidade,i;
+    printf("Qual o nome do arquivo: ");
+    scanf("%20s",nome);
+
+
+    FILE *file = fopen(nome,"wb");
+    if (file==NULL)exit(1);
+    fwrite(oculto,sizeof(float),3,file);
+    fclose(file);
+
+    file = fopen(nome,"rb");
+    if(file==NULL)exit(1);
+    //descobre a qntidade de numeros escritos no arquivo
+    fseek(file,0,SEEK_END);
+    long tamanho = ftell(file);
+    fseek(file,0,SEEK_SET);
+
+    qntidade = tamanho/sizeof(float);
+    vetor = (float*)malloc(qntidade*sizeof(float));
+    if(vetor==NULL){
+    fclose(file);
+    exit(1);
+    }
+    //armazena numeros no vetor
+    fread(vetor,sizeof(float),qntidade,file);
+    fclose(file);
+
+    result = media(vetor,qntidade);
+    printf("A media dos valores é: %.2f",result);
+    free(vetor);
+
+    return 0;
+}
