@@ -10,7 +10,10 @@ float p1,p2,p3;
 //funçao para media
 float media (char* mat, char* nome_arquivo){
     FILE *file = fopen(nome_arquivo,"r");
-    if (file==NULL) exit(1);
+    if (file==NULL){
+        printf("ERRO");
+        exit(1);
+    }
     char matricula[11];
     float n1,n2,n3;
     while (fscanf(file,"%10s %f %f %f",matricula,&n1,&n2,&n3)==4){
@@ -48,6 +51,10 @@ for(i=0;i<totalreg;i++){
 }
 //registra dados no arquivo
 FILE*file = fopen("arquivo.txt","w");
+if(file==NULL){
+    printf("ERRO");
+    exit(1);
+}
 for(i=0;i<totalreg;i++){
     fprintf(file,"%s ",registros[i].matricula);
     fprintf(file,"%.2f ",registros[i].p1);
@@ -61,7 +68,7 @@ scanf("%10s",matr);
 
 //printa resultado
 m = media(matr,"arquivo.txt");
-printf("%f",m);
+printf("%.2f",m);
 //libera memoria
 free(registros);
 
