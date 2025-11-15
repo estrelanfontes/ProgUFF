@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void ordena(float*vetor, int tam){
+
+    if(tam<=1){
+        return;
+    }
+    else{
+    float x = vetor[0];
+    int a = 1;
+    int b = tam-1;
+    
+    do {
+        while(a<tam && vetor[a]<=x)a++;
+        while (vetor[b]>x)b--;
+        if(a<b){
+            float temp=vetor[a];
+            vetor[a]=vetor[b];
+            vetor[b]=temp;
+            a++;b--;
+        }
+    } while(a<=b);
+    vetor[0] = vetor[b];
+    vetor[b] = x;
+    
+    ordena(vetor,b);
+    ordena(&vetor[a],tam-a);
+    }
+    
+}
+
+int main(){
+    int number,i;
+    printf("Quantos numeros deseja inserir: ");
+    scanf("%d",&number);
+    float *vet = (float*)malloc(number*sizeof(float));
+    if (vet==NULL)exit(1);
+    
+    FILE*file = fopen("numeros.txt","w");//criando o arquivo 
+    if (file==NULL)exit(1);
+    
+    for(i=0;i<number;i++){//registrando dados
+        float n;
+        printf("insira um numero: ");
+        scanf("%f",&n);
+        fprintf(file,"%f ",n);
+        
+    }
+    fclose(file);
+    
+    //abrindo o arquivo para transferir dados para o vetor(n era necessario mas é bom pra treinar)
+    file = fopen("numeros.txt","r");
+    if (file==NULL)exit(1);
+    for (i=0;i<number;i++){
+    if(fscanf(file,"%f",&vet[i])!=1){ //le dados individualmente e ja armazena no vet[i], caso os dados acabem antes do vetor printa uma mensagem de erro
+        printf("error: arquivo<vetor");
+        break;
+    }
+    }
+    fclose(file);
+    ordena(vet,number);
+    
+    FILE*binfile = fopen("numeros.bin","wb");
+    if(binfile==NULL)exit(1);
+    fwrite(vet,sizeof(float),number,binfile);//transcreve o todo vetor ordenado para o arquivo binario
+    
+    fclose(binfile);
+    
+    printf("Vetor ordenado: ");
+    for (i = 0; i < number; i++) {
+        printf("%.2f ", vet[i]);
+    }
+    printf("\n");
+    
+    free(vet);
+    
+    
+    return 0;
+}
