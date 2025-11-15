@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+//struct com os dados
+typedef struct dados{
+char matricula[11];
+float p1,p2,p3;
+}Aluno;
+//funçao para media
+float media (char* mat, char* nome_arquivo){
+    FILE *file = fopen(nome_arquivo,"r");
+    if (file==NULL) exit(1);
+    char matricula[11];
+    float n1,n2,n3;
+    while (fscanf(file,"%10s %f %f %f",matricula,&n1,&n2,&n3)==4){
+        if(strcmp(matricula,mat)==0){
+            fclose(file);
+            return (n1+n2+n3)/3;
+        }
+    }
+    fclose(file);
+    return -1.0;
+    }
+
+
+int main() {
+float m;
+int i,totalreg;
+char matr[11];
+printf("Quantos alunos serao registrados? ");
+scanf("%d",&totalreg);
+//aloca vetor dos alunos
+Aluno *registros = (Aluno*)malloc(totalreg*sizeof(Aluno));
+if (registros==NULL) exit(1);
+
+//le os dados do usuario
+for(i=0;i<totalreg;i++){
+    printf("\nMatricula: ");
+    scanf("%10s",registros[i].matricula);
+    printf("\nNota1: ");
+    scanf("%f",&registros[i].p1);
+    printf("\nNota2: ");
+    scanf("%f",&registros[i].p2);
+    printf("\nNota3: ");
+    scanf("%f",&registros[i].p3);
+    while(getchar()!='\n');
+}
+//registra dados no arquivo
+FILE*file = fopen("arquivo.txt","w");
+for(i=0;i<totalreg;i++){
+    fprintf(file,"%s ",registros[i].matricula);
+    fprintf(file,"%.2f ",registros[i].p1);
+    fprintf(file,"%.2f ",registros[i].p2);
+    fprintf(file,"%.2f\n",registros[i].p3);
+}
+fclose(file);
+//coleta a matricula para com.2paraçao
+printf("Insira a sua matricula: ");
+scanf("%10s",matr);
+
+//printa resultado
+m = media(matr,"arquivo.txt");
+printf("%f",m);
+//libera memoria
+free(registros);
+
+    return 0;
+}
