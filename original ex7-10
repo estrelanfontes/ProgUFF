@@ -35,7 +35,7 @@ int main(){
     float n;
     FILE*file = fopen("numeros.txt","r");
     if (file==NULL)exit(1);
-  
+
     while(fscanf(file,"%f",&n)==1) {
         cont++;
     }
@@ -44,7 +44,7 @@ int main(){
     if (vet == NULL)exit(1);
 
     for (i=0;i<cont;i++){
-    if(fscanf(file,"%f",&vet[i])!=1){ 
+    if(fscanf(file,"%f",&vet[i])!=1){
         printf("error: arquivo<vetor");
         break;
     }
@@ -64,11 +64,15 @@ int main(){
         fread(verifica, sizeof(float), cont, binfile);
         fclose(binfile);
 
-        printf("Verificacao binaria: ");
+        printf("conteudo do arquivo binario: ");
         for (i = 0; i < cont; i++) {
             printf("%.2f ", verifica[i]);
         }
         printf("\n");
+    }
+    else{ 
+        printf("erro ao abrir o arquivo");
+        exit(1);
     }
 
     free(vet);
