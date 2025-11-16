@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int**soma(int*m1,int*m2,int l, int c){
+    int i,j;
+    int **matriz = (int**)malloc(l*sizeof(int*));
+    for (i=0;i<l;i++){
+        matriz[i] = (int*)malloc(c*sizeof(int));
+        for (j=0;j<c;j++){
+        matriz[i][j] = *(m1+i*c+j)+*(m2+i*c+j);
+    }
+    }
+    return matriz;
+}
+
+void diagonais(int*matriz,int n,int *s1,int *s2){
+    int i;
+    *s1 = 0;
+    *s2 = 0;
+    for (i=0;i<n;i++){
+            *s1 += *(matriz + i*n + i);
+            *s2 += *(matriz + i*n + (n-1-i));
+    }
+    
+}
+int**produto(int*m1,int*m2,int number){
+    int i,j,k;
+    int**matriz = (int**)malloc(number*sizeof(int*));
+    int soma;
+    for (i=0;i<number;i++){
+        matriz[i] = (int*)malloc(number*sizeof(int));
+        for (j=0;j<number;j++){
+            soma = 0;
+            for (k=0;k<number;k++){
+                soma += ( *(m1 + i*number + k)) * ( *(m2 + k*number + j));
+            }
+            matriz[i][j] = soma;
+    }
+    }
+    return matriz;
+}
+int main() {
+int**p,**s;
+int soma1,soma2;
+int i,j;
+int linhas = 3;
+int colunas = 3;
+int vet[3][3] = {
+    {4,2,8},
+    {1,2,7},
+    {2,2,1}
+    };
+int matriz[3][3] = {
+    {3,2,1},
+    {5,4,6},
+    {4,3,1}
+};
+
+
+s = soma((int*)vet,(int*)matriz,linhas,colunas);
+printf("\nMATRIZ SOMA ");
+      for (i=0;i<linhas;i++){
+        for (j=0;j<colunas;j++){
+        printf("%d ",s[i][j]);
+        }
+        }
+    
+p = produto((int*)vet,(int*)matriz,3);
+printf("\nMATRIZ PRODUTO ");
+      for (i=0;i<linhas;i++){
+        for (j=0;j<colunas;j++){
+        printf("%d ",p[i][j]);
+        }
+        }
+printf("\nSOMA DAS DIAGONAIS PRIMEIRA MATRIZ ");
+diagonais((int*)vet,3,&soma1,&soma2);
+printf("%d %d",soma1,soma2);
+
+printf("\nSOMA DAS DIAGONAIS SEGUNDA MATRIZ ");
+diagonais((int*)matriz,3,&soma1,&soma2);
+printf("%d %d",soma1,soma2);
+
+for(i=0;i<linhas;i++){
+    free(s[i]);
+    free(p[i]);
+}
+free(p);
+free(s);
+    return 0;
+}
