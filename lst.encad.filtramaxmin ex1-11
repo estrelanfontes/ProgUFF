@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+
+struct elemento {
+float info; /* Valor real armazenado */
+struct elemento *prox; /* Ponteiro para o próximo elemento */
+};
+typedef struct elemento Elemento;
+
+Elemento* filtra(Elemento *lst, float min, float max){ //atençao funçao recursiva
+
+if (lst==NULL)return NULL;
+
+lst->prox = filtra(lst->prox,min,max);
+
+if (lst->info<min || lst->info>max){
+    Elemento*temp = lst->prox;      //cria ponteiro temporario que armazena o prox elemento da lista
+    free(lst);         //libera o primeiro elemento que esta fora do intervalo
+    return temp;           //aqui o proximo elemento se torna o primeiro da lista
+
+}
+
+return lst;//retorna para o primeiro elemento da lista
+}
+
+int main(){
+float min,max;
+int num,i;
+Elemento* lst = NULL; //cria e inicializa a lista
+//insere os elemento e aloca na memoria
+printf("\nquantos elementos deseja inserir? ");
+scanf(" %d",&num);
+while(getchar() != '\n');
+//define variaveis min e max
+printf("\nQual o valor minimo que deseja preservar: ");
+scanf(" %f",&min);
+printf("\nQual o valor maximo que deseja preservar: ");
+scanf(" %f",&max);
+while(getchar() != '\n');
+//recebe os elemento fora de ordem
+printf("\nCRIANDO A LISTA");
+for (i=0;i<num;i++){
+    Elemento*novo = (Elemento*)malloc(sizeof(Elemento));
+    if (novo==NULL)exit(1);
+    printf("\ninsira o elemento: ");
+    scanf(" %f",&novo->info);
+    while(getchar() != '\n');
+    novo->prox = lst;
+    lst = novo;
+}
+
+//ordena a lista (pra praticar)
+
+//printando a lista dos elementos preservados (dentro do intervalo fechado definido)
+Elemento*first = filtra(lst,min,max);
+Elemento *p = first; //
+while (p!=NULL){
+    printf("\n%.2f",p->info);
+    p = p->prox;
+}
+
+//libera a memoria alocada
+p = first;
+while (p!=NULL){
+    Elemento *temp = p;
+    p = p->prox;
+    free(temp);
+
+}
+
+
+return 0;
+}
+
