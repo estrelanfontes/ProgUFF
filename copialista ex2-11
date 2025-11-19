@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct elemento {
+int info; /* Valor inteiro armazenado */
+struct elemento *prox; /* Ponteiro para o próximo elemento */
+};
+typedef struct elemento Elemento;
+
+//funçao copia elementos recursivamente
+Elemento* funcaocopia(Elemento* lista){
+
+if(lista==NULL)return NULL;
+Elemento* elementocopia = (Elemento*)malloc(sizeof(Elemento));
+if (elementocopia==NULL)exit(1);
+elementocopia->info = lista->info;
+elementocopia->prox = funcaocopia(lista->prox);
+
+return elementocopia;
+}
+
+Elemento*funcaonovo(Elemento*lista,int valor){
+
+Elemento *novo = (Elemento*)malloc(sizeof(Elemento));
+if (novo==NULL)exit(1);
+novo->info = valor;
+novo->prox = lista;
+
+return novo;
+}
+
+int main(){
+
+Elemento*lista = NULL;
+//inserindo elementos sempre na primeira posiçao da lista
+//alocando os elementos
+Elemento *novo = (Elemento*)malloc(sizeof(Elemento));
+if (novo==NULL)exit(1);
+lista = funcaonovo(lista,2);
+lista = funcaonovo(lista,1);
+lista = funcaonovo(lista,5);
+lista = funcaonovo(lista,0);
+
+Elemento*novalista = funcaocopia(lista);
+
+//printa os elementos da lista copia e libera a memoria de cada elemento
+
+Elemento* temp = novalista;
+while (temp!=NULL){
+    printf("\nElemento da nova lista: %d",temp->info);
+    novalista = temp->prox;
+    free(temp);
+    temp = novalista;
+
+}
+
+}
