@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int cont = 1;
+int indice = 2;
+char string[] = "Estrela do Nascimento ";
+char nova[81];
+if (string==NULL)exit(1);
+
+nova[0]=string[0];
+nova[1]='.';
+//a nova string nao pode considerar as preposiçoes entao verifiquei se o sobrenome que teve sigla copiada possui mais de 3 letras 
+//tambem poderia conferir se a primeira letra do sobrenome era maiuscula usando fç toupper()
+while (string[cont]!='\0'){
+    if (string[cont]==' '&&string[cont+3]!=' '){
+        nova[indice]=string[cont+1];
+        indice++;
+        nova[indice]='.';
+        indice++;
+}
+cont++;
+}
+    nova[indice] = '\0';
+    printf("%s",nova);
+    
+    return 0;
+
+}
