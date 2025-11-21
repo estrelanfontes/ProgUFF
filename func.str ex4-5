@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+
+void primeira(char* str,char*p){
+        if (str==NULL) printf(" string vazia");
+        else *p=str[0];
+    
+}
+void ultima(char *str,char*p){
+    int cont=0;
+    if (str==NULL) printf("string vazia");
+    while (str[cont]!='\0'){
+        cont++;
+    }
+    *p = str[cont-1];
+}
+
+
+void size(char *str, int*p){
+    int cont=0;
+    if (str==NULL) printf("string vazia");
+    while (str[cont]!='\0'){
+        cont++;
+    }
+    *p = cont;
+}
+
+int main(){
+    char string[81];
+    char p,u;
+    int s;
+    
+    printf("digite uma string: ");
+    scanf("%80[^\n]",string);
+    primeira(string,&p);
+    ultima(string,&u);
+    size(string,&s);
+    printf("\nnumero de caracteres: %d",s);
+    printf("\nprimeiro caractere: '%c'",p);
+    printf("\nultimo caractere: '%c'",u);
+    return 0;
+}
