@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+char frase[80]="o rato roeu a roupa do rei de roma";
+char *p;
+p = frase;
+p[2]='m';// agr rato é mato
+p[6]='\0';//redefine o final da string para o indice 6, logo strlen(frase)=5
+printf("%s\n", frase);//le a nova string: o mato 
+p = p + 3;//avança tres casas o ponteiro da string
+printf("%s\n",p);//printa o indice 3,4,5 ou seja "ato";
+printf("%d\n",strlen(frase));//retorna o tamanho da string e nao considera o contrabarra zero, ou seja conta apenas os caracteres
+
+    return 0;
+}
+
+//o mato
+//ato
+//6
