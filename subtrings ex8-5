@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(){
+char *str1 = "hip-hop";
+char *str2 = "trp00";
+int i=0;
+int iguais = 1;
+char* menor;
+char* maior;
+    
+if (strlen(str1)!=strlen(str2)){
+    iguais = 0;
+}
+else{
+    while(str1[i]!='\0'){
+        if (str1[i]!=str2[i]){
+        iguais=0;
+        break;
+    }
+    i++;
+}}
+if (iguais) printf("strings idênticas");
+if (!iguais){
+    printf("as strings são distintas e ");
+    if (strlen(str1)<strlen(str2)){
+        menor = str1;
+        maior = str2;
+    }
+    else {
+        menor = str2;
+        maior = str1;
+        
+    }
+int j;
+//para cada caractere da menor string, se for igual a algum caractere da maior string && o proximo caractere tambem for igual ao proximo da maior string, entao sao subtrings
+for (i=0;i<strlen(menor)-1;i++){
+    for (j=0;j<strlen(maior)-1;j++){
+        if (menor[i]==maior[j]&&menor[i+1]==maior[j+1]){
+            return printf("são substrings");
+        }
+    }
+    if (i==strlen(menor)-2) return printf("não são subtrings");
+}}
+
+    return 0;
+    
+}
