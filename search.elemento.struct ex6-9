@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct pessoa {
+int codigo;
+char nome[81];
+};
+typedef struct pessoa Pessoa;
+Pessoa* busca(int n, Pessoa** vet, int cod){
+    int inicio = 0;
+    int fim = n-1;
+    
+    if (vet==NULL)exit(1);
+    if(cod>vet[fim]->codigo||cod<vet[inicio]->codigo)return NULL;
+    while(inicio<=fim){
+        int metade=inicio+(fim-inicio)/2;
+        
+        if (cod>vet[metade]->codigo)inicio = metade+1;//mais um pq ja verificou que cod!= vet[metade]
+        else if (cod<vet[metade]->codigo)fim = metade-1;
+        else return vet[metade];//quando cod==vet[metade];
+    }
+    return NULL;
+    
+}
+
+int main(){
+    int i,n = 3;
+    int cod;
+    Pessoa**registros = (Pessoa**)malloc(n*sizeof(Pessoa*));
+    if (registros==NULL)exit(1);
+    printf("ATENCAO OS CODIGOS PRECISAM ESTAR EM ORDEM CRESCENTE");
+    for(i=0;i<n;i++){
+        char name[81];
+        registros[i]= (Pessoa*)malloc(sizeof(Pessoa));
+        if (registros[i]==NULL)exit(1);
+        printf("\nnome: ");
+        scanf("%80[^\n]",name);     //ou fgets(name,80,stdin);     
+        strcpy(registros[i]->nome,name);
+        printf("\ncodigo: ");
+        scanf("%d",&registros[i]->codigo);
+        while(getchar()!='\n');     //ou simplesmente getchar();
+    }
+    
+    printf("\nQual codigo deseja procurar: ");
+    scanf("%d",&cod);
+    Pessoa*individuo = busca(n, registros, cod);
+    if (individuo==NULL)exit(1);
+    printf("\no nome da pessoa é: %s",individuo->nome);
+    
+    for(i=0;i<n;i++){
+        free(registros[i]);
+    }
+    free(registros);
+    return 0;
+}
