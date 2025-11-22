@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include <string.h>
+
+int main(){
+    
+int indice,valor;
+char str[21];
+char str2[] = "inicializada";
+
+//strcpy  copia string para ponteiro
+strcpy(str,"inicializada");
+printf("\n%s",str);
+
+//strcspn retorna indice do primeiro caract igual entre strings
+indice = strcspn(str,str2);
+printf("\nstrings iguais no indice %d",indice);
+
+//strcmp  compara duas strings
+valor = strcmp(str,str2);
+if (valor==0) printf("\nstrings iguais");
+else valor>0? printf("\nstr é maior que str2"):printf("\nstr2 é maior que str");
+    return 0;
+}
