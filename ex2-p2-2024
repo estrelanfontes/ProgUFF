@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main(){
+    char frase[80]="Quem ensina aprende ao ensinar";
+    char*p;
+    p = frase;
+    printf("%c\n",p[2]);
+    p[2]='X';
+    p[11]='\0';
+    printf("%s\n",frase);
+    p=p+3;
+    printf("%s\n",p);
+}
+
+//output:
+//e
+//QuXm ensina
+//m ensina
