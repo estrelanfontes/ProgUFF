@@ -2,7 +2,6 @@
 //”10” (exemplo: teste01.txt”). Cada arquivo deve conter dentro dele o texto ”Texto do
 //arquivo [NÚMERO DO ARQUIVO]”.
 #include <stdio.h>
-#include <stdlib.h>
 
 int main() {
     int i;
@@ -12,7 +11,7 @@ int main() {
         
         sprintf(filename,"teste%02d.txt",i);
         file = fopen(filename, "w");
-        if (file==NULL)exit(1);
+        if (file==NULL)return 1;
         fprintf(file,"Texto do arquivo [%d]",i);
         fclose(file);
     }
