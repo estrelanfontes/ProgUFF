@@ -1,0 +1,29 @@
+//troca valores(pelas coordenadas) dos pontos x e y da variavel novoponto do tipo Ponto
+#include <stdio.h>
+#include <stdlib.h>
+
+struct ponto{
+    int x,y;
+    
+};
+typedef struct ponto Ponto;
+
+
+void troca(Ponto *p){
+    int temp = p->x ;
+    p->x = p->y;
+    p->y = temp;
+    
+    
+}
+
+int main() {
+Ponto*novoponto = (Ponto*)malloc(sizeof(Ponto));
+if (novoponto == NULL) exit(1);
+novoponto->x = 12;
+novoponto->y = 88;
+troca(novoponto);
+printf("%d",novoponto->x);
+free(novoponto);
+    return 0;
+}
