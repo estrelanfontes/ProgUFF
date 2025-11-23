@@ -1,0 +1,25 @@
+
+#include <stdio.h>
+#include <string.h>
+int main() {
+char str1[21];
+char str2[21];
+char str3[21];
+
+printf("\nInfo1: ");
+scanf("%20[^\n]",str1);
+getchar();
+printf("\nInfo2: ");
+scanf("%20[^\n]",str2);
+getchar();
+printf("\nInfo3: ");
+scanf("%20[^\n]",str3);
+
+char *concat;
+char *concat2;
+concat = strcat(str1,str2);
+concat2 = strcat(concat,str3);
+printf("%s",concat2);
+
+    return 0;
+}
