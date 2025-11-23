@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct aluno {
+int mat; /* Matricula do aluno */
+char nome[81]; /* Nome do aluno */
+};
+typedef struct aluno Aluno;
+struct prova {
+Aluno a; /* Aluno que fez a prova */
+float q1, q2, q3, q4; /* Nota em cada questao */
+};
+typedef struct prova Prova;
+
+int compara(Prova*p,Prova*q){
+    if(p==NULL||q==NULL)exit(1);
+    float nota1,nota2;
+    nota1 = p->q1+p->q2+p->q3+p->q4;
+    nota2 = q->q1+q->q2+q->q3+q->q4;
+    if(nota1>nota2)return 0;
+    if(nota2>nota1)return 1;
+    else{
+        char*alfabeto="abcdefghijklmnopqrstuvwxyz";
+        int i,j=0;
+        for(i=0;i<26;i++){
+            if(p->a.nome[j]==alfabeto[i]&&q->a.nome[j]==alfabeto[i])j++;
+            else{
+                if (p->a.nome[j]==alfabeto[i])return 0;
+                if (q->a.nome[j]==alfabeto[i])return 1;
+            }}
+    }
+}
+            
+void troca(Prova**p,Prova**q){
+    Prova *temp = *p;
+    *p = *q;
+    *q = temp; 
+}
+
+void ordena(int n, Prova** v){
+int fim,i;
+for(fim=n-1; fim>0; fim--){
+for(i=0; i<fim; i++){
+if(compara(v[i],v[i+1])) troca(&v[i],&v[i+1]);
+}
+}}
+int main(){
+    int i,n = 2;
+    Prova**registros = (Prova**)malloc(n*sizeof(Prova*));
+    if (registros==NULL)exit(1);
+    for(i=0;i<n;i++){
+        Prova*estudante = (Prova*)malloc(sizeof(Prova));
+        if (estudante==NULL)exit(1);
+        printf("\nMatricula: ");
+        scanf("%d",&estudante->a.mat);
+        printf("\nNome: ");
+        while(getchar()!='\n');
+        scanf("%80[^\n]",&estudante->a.nome);
+        printf("\nNota1: ");
+        scanf("%f",&estudante->q1);
+        printf("\nNota2: ");
+        scanf("%f",&estudante->q2);
+        printf("\nNota3: ");
+        scanf("%f",&estudante->q3);
+        printf("\nNota4: ");
+        scanf("%f",&estudante->q4);
+        
+        registros[i] = estudante; 
+    }
+
+ordena(n,registros);
+float media = (registros[0]->q1+registros[0]->q2+registros[0]->q3+registros[0]->q4)/4;
+printf("Nome: %s, Media: %.2f",registros[0]->a.nome,media);
+
+    for(i=0;i<n;i++){
+        free(registros[i]);
+    }
+    free(registros);
+
+    return 0;
+}
